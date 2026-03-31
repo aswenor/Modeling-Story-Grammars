@@ -1,0 +1,28 @@
+Task: Label Latin sentences with the following labeling scheme. Only use the labels provided and do not create any new labels. If you are unsure, please use the label "unk". 
+
+Here is the labeling scheme to follow. These labels represent elements of stories, we call them story grammar labels. We provide a context-free grammar which contains the heirarchy of our labeling scheme, where values in '' are terminals and all others are non-terminals:
+event -> trip | 'event'
+trip -> subj | act | obj | 'unk' | 'trip' |
+subj -> subj-ind | subj-group | 'subj'
+subj-ind -> 'ind-name' | 'ind-char' | 'subj-ind'
+subj-group -> 'group-name' | 'group-char' | 'subj-group' 
+act -> 'act-verb' | 'act-mod' | 'act-neg' | act-circum | 'act'
+act-circum -> 'circum-time' | 'circum-place' | 'circum-type' | 'circum-reas' | 'circum-instr' | 'circum-out' | 'circum-num' | 'act-circum'
+obj -> 'obj-subj' | 'obj-physobj' | 'obj-char' | 'obj'
+
+
+Here are all the labels from the grammar listed out:
+event, trip, subj, subj-ind, ind-name, ind-char, subj-group, group-char, act, act-verb, act-neg, act-mod, act-circum, circum-time, circum-place, circum-type, circum-reas, circum-instr, circum-out, circum-num, obj, obj-subj, obj-physobj, obj-char, unk
+
+The file provided titled "few-shot-examples.txt" has a list of 20 examples of Latin sentences that have been labeled correctly according to the above labeling scheme. The format of these examples is given at the sentence level and each word is given a label within the sentence in a nested format similar to the Universal Dependency format.
+
+For the output, please provide a json file that contains all of the sentences, their corresponding line numbers, and the labels you have given it. Here is an example of that json output:
+{
+      "text": "formosum pastor corydon ardebat alexim",
+      "line_num": "1.1",
+      "output": "(event (trip (subj (subj-ind (ind-char formosum) (ind-char pastor) (ind-name corydon))) (act (act-verb ardebat)) (obj (obj-	subj alexim))))"
+}
+
+The file provided titled "[TITLE]" contains the sentences for you to label. They are formatted in a json format with each sentence to label and its corresponding line number.
+
+Please complete the task of labeling these Latin sentences using our labeling scheme.
